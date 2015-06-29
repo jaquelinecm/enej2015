@@ -22,3 +22,9 @@
     });
   };
 })
+
+angular.module('starter.controllers', [])
+ 
+.controller('Login', function($scope) {
+  $scope.title = 'App Lindo';
+});

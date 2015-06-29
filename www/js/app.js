@@ -29,3 +29,15 @@ angular.module('starter', ['ionic','ngCordova','ionic.service.core','ionic.servi
     dev_push: true
   });
 }])
+
+.state('login', {
+  url: '/login',
+  views: {
+    'login': {
+      templateUrl: 'templates/login.html',
+      controller: 'Login'
+    }
+  }
+})
+
+$urlRouterProvider.otherwise('/login');
