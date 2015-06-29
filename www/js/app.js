@@ -30,14 +30,25 @@ angular.module('starter', ['ionic','ngCordova','ionic.service.core','ionic.servi
   });
 }])
 
-.state('login', {
-  url: '/login',
+
+.state('app.sessions', {
+  url: "/sessions",
   views: {
-    'login': {
-      templateUrl: 'templates/login.html',
-      controller: 'Login'
+    'menuContent': {
+      templateUrl: "templates/sessions.html",
+      controller: 'SessionsCtrl'
     }
   }
 })
 
-$urlRouterProvider.otherwise('/login');
+.state('app.session', {
+  url: "/sessions/:sessionId",
+  views: {
+    'menuContent': {
+      templateUrl: "templates/session.html",
+      controller: 'SessionCtrl'
+    }
+  }
+})
+
+$urlRouterProvider.otherwise('/app/sessions');

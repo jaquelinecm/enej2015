@@ -1,30 +1,50 @@
-.controller('DashCtrl', function($scope, $rootScope, $ionicUser, $ionicPush) {
-  // Identifies a user with the Ionic User service
-  $scope.identifyUser = function() {
-    console.log('Ionic User: Identifying with Ionic User service');
+angular.module('starter.controllers', ['starter.services'])
 
-    var user = $ionicUser.get();
-    if(!user.user_id) {
-      // Set your user_id here, or generate a random one.
-      user.user_id = $ionicUser.generateGUID();
-    };
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+  
+  // With the new view caching in Ionic, Controllers are only called
+  // when they are recreated or on app start, instead of every page change.
+  // To listen for when this page is active (for example, to refresh data),
+  // listen for the $ionicView.enter event:
+  //$scope.$on('$ionicView.enter', function(e) {
+  //});
+  
+  // Form data for the login modal
+  $scope.loginData = {};
 
-    // Add some metadata to your user object.
-    angular.extend(user, {
-      name: 'Ionitron',
-      bio: 'I come from planet Ion'
-    });
+  // Create the login modal that we will use later
+  $ionicModal.fromTemplateUrl('templates/login.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
-    // Identify your user with the Ionic User Service
-    $ionicUser.identify(user).then(function(){
-      $scope.identified = true;
-      alert('Identified user ' + user.name + '\n ID ' + user.user_id);
-    });
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modal.hide();
+  };
+
+  // Open the login modal
+  $scope.login = function() {
+    $scope.modal.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+    console.log('Doing login', $scope.loginData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeLogin();
+    }, 1000);
   };
 })
 
-angular.module('starter.controllers', [])
- 
-.controller('Login', function($scope) {
-  $scope.title = 'App Lindo';
+.controller('SessionsCtrl', function($scope, Session) {
+  $scope.sessions = Session.query();
+})
+
+.controller('SessionCtrl', function($scope, $stateParams, Session) {
+  $scope.session = Session.get({sessionId: $stateParams.sessionId});
 });
