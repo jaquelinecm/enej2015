@@ -1,6 +1,6 @@
-angular.module('starter.controllers', ['starter.services'])
+angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,9 +9,29 @@ angular.module('starter.controllers', ['starter.services'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   
+  
   // Form data for the login modal
   $scope.loginData = {};
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+    console.log('Doing login', $scope.loginData);
 
+    $http.get('http://sistema.enej15.com.br/authentication-mobile',{ params: { "email": $scope.loginData.username, "password": $scope.loginData.password } }).then(function(resp) {
+      console.log('Success', resp);
+      // For JSON responses, resp.data contains the result
+    }, function(err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    });
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    //$timeout(function() {
+      //$scope.closeLogin();
+    //}, 1000);
+  };
+
+  /*
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -28,23 +48,23 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.login = function() {
     $scope.modal.show();
   };
+ */
+  
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+ 
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
-.controller('SessionsCtrl', function($scope, Session) {
-  $scope.sessions = Session.query();
+.controller('PlaylistsCtrl', function($scope) {
+  $scope.playlists = [
+    { title: 'Reggae', id: 1 },
+    { title: 'Chill', id: 2 },
+    { title: 'Dubstep', id: 3 },
+    { title: 'Indie', id: 4 },
+    { title: 'Rap', id: 5 },
+    { title: 'Cowbell', id: 6 }
+  ];
 })
 
-.controller('SessionCtrl', function($scope, $stateParams, Session) {
-  $scope.session = Session.get({sessionId: $stateParams.sessionId});
+.controller('PlaylistCtrl', function($scope, $stateParams) {
 });
