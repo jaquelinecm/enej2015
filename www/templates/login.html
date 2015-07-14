@@ -3,6 +3,7 @@
     <form ng-submit="doLogin()">
       <div class="spacer" style="width: 300px; height: 170px;"></div>
       <div class="list list-inset">
+        <div id="error" ng-show="erroLogin"><span ng-repeat="message in messageError">{{message}}<br/></span></div>
         <label class="item item-input">
           <input type="text" placeholder="email" ng-model="loginData.username" />
         </label>
@@ -11,7 +12,6 @@
         </label>
         <label class="item">
           <button class="button button-block button-energized" type="submit">Entrar</button>
-          <a href="#/signup" class="button button-positive button-clear button-block ">Azedou, esqueci minha senha! :(</a>
         </label>
       </div>
     </form>
