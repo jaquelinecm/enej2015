@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('enejApp')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $rootScope, Session) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,6 +9,8 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   
+  $scope.erroLogin = false;
+  $scope.messageError = "";
   
   // Form data for the login modal
   $scope.loginData = {};
@@ -16,22 +18,36 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
 
-    $http.get('http://sistema.enej15.com.br/authentication-mobile',{ params: { "email": $scope.loginData.username, "password": $scope.loginData.password } }).then(function(resp) {
-      console.log('Success', resp);
+    $http.get('http://sistema.enej15.com.br/authentication/mobile/request/',{ params: { "user": $scope.loginData.username, "password": $scope.loginData.password } }).then(function(resp) {
+      console.log('Success', resp.data);
+
+      $scope.messageError = resp.data.message; 
+
+      if(resp.data.success){
+        $scope.erroLogin = false;
+        Session.create($scope.loginData.username,$scope.loginData.password,true);
+      } else {
+        $scope.erroLogin = true;
+      }
+      
       // For JSON responses, resp.data contains the result
     }, function(err) {
+      $scope.erroLogin = true;
       console.error('ERR', err);
       // err.status will contain the status code
     });
 
+
+    $rootScope.loggedUser = Session;
+
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    //$timeout(function() {
-      //$scope.closeLogin();
-    //}, 1000);
+    $timeout(function() {
+      $scope.closeLogin();
+    }, 1000);
   };
 
-  /*
+  
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -48,7 +64,9 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
- */
+ 
+
+  console.log(Session.logged);
   
 
  
