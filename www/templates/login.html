@@ -1,6 +1,7 @@
 <ion-view view-title="Seja bem vindo!" id="login-background">
   <ion-content>
     <form ng-submit="doLogin()">
+      <div class="spacer" style="width: 300px; height: 170px;"></div>
       <div class="list list-inset">
         <label class="item item-input">
           <input type="text" placeholder="email" ng-model="loginData.username" />
@@ -10,6 +11,7 @@
         </label>
         <label class="item">
           <button class="button button-block button-energized" type="submit">Entrar</button>
+          <a href="#/signup" class="button button-positive button-clear button-block ">Azedou, esqueci minha senha! :(</a>
         </label>
       </div>
     </form>

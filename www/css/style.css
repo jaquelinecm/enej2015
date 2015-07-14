@@ -1,5 +1,6 @@
 /* Empty. Add your own CSS if you like */
 #login-background{
-	background-image: url('../img/login-background.jpg');
-	background-repeat: none;
+	background-image: url('../img/pontejk1.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 }
