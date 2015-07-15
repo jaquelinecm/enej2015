@@ -42,8 +42,21 @@ angular.module('enejApp', ['ionic', 'ngCordova'])
     url: "/welcome",
     views: {
       'menuContent': {
-        templateUrl: "templates/welcome.html"
+        templateUrl: "templates/welcome.html",
+        controller: 'WelcomeCtrl'
       }
+    },
+      
+  })
+
+  .state('app.congressmanManual', {
+    url: "/congressmanManual",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/congressmanManual.html",
+        controller: 'CongressmanmanualCtrl'
+      },
+      
     }
   })
 
@@ -53,17 +66,6 @@ angular.module('enejApp', ['ionic', 'ngCordova'])
       'menuContent': {
         templateUrl: "templates/login.html"
       }
-    }
-  })
-
-
-  .state('app.congressmanManual', {
-    url: "/congressmanManual",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/congressmanManual.html"
-      },
-      controller: 'CongressmanmanualCtrl'
     }
   })
 
