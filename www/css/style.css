@@ -4,3 +4,13 @@
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
+
+#menu{
+	background-color: #003851;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+#submenu{
+	background-color: #003851; 
+}

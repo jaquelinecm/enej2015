@@ -13,8 +13,8 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+    <ion-header-bar class="bar-stable" id="menu">
+      <h1 class="title" id="menu">ENEJ 2015</h1>
     </ion-header-bar>
     <ion-content>
 
@@ -22,7 +22,7 @@
         <ion-item menu-close ng-click="login()" ng-show="loggedUser.logged">
           Login
         </ion-item>
-        <ion-item menu-close href="#/app/welcome">
+        <ion-item menu-close href="#/app/welcome" id="submenu">
           Welcome
         </ion-item>
         <ion-item menu-close href="#/app/search">
