@@ -48,6 +48,20 @@ angular.module('enejApp', ['ionic', 'ngCordova'])
   })
 
 
+    .state('app.congressmanManual', {
+    url: "/congressmanManual",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/congressmanManual.html"
+      },
+      controller: 'CongressmanmanualCtrl'
+    }
+  })
+
+
+
+
+
   .state('app.search', {
     url: "/search",
     views: {
@@ -83,6 +97,9 @@ angular.module('enejApp', ['ionic', 'ngCordova'])
         controller: 'PlaylistCtrl'
       }
     }
+
+
+
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/login');
