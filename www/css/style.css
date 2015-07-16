@@ -1,4 +1,5 @@
 /* Empty. Add your own CSS if you like */
+
 #menu{
 	background-color: #003851;
 	color: #FFFFFF;
@@ -66,4 +67,26 @@
     margin-right:auto;
 }
 
+/* instituto sabin */
+
+#sponsor_instituto_sabin{
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.sentence_instituto_sabin{
+	padding-left: 5%;
+	padding-right: 5%;
+	text-align: justify;
+	font-size: 11pt;
+}
+
+
+#last_sentence_instituto_sabin{
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 5%;
+	text-align: justify;
+	font-size: 11pt;
+}
 

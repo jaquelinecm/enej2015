@@ -88,6 +88,17 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.sponsorInstitutoSabin', {
+    url: "/sponsorInstitutoSabin",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/sponsorInstitutoSabin.html",
+        controller: 'SponsorInstitutoSabinCtrl'
+      },
+      
+    }
+  })
+
   .state('app.login', {
     url: "/login",
     views: {
