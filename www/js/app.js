@@ -60,6 +60,17 @@ angular.module('enejApp', ['ionic', 'ngCordova'])
     }
   })
 
+  .state('app.sponsors', {
+    url: "/sponsors",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/sponsors.html",
+        controller: 'SponsorsCtrl'
+      },
+      
+    }
+  })
+
   .state('app.login', {
     url: "/login",
     views: {
