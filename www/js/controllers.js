@@ -16,7 +16,7 @@ angular.module('enejApp')
             console.error(err);
         });
 
-var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
+  var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
         $cordovaSQLite.execute(db, query, ['teste']).then(function(res) {
             if(res.rows.length > 0) {
                 console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
@@ -32,6 +32,7 @@ var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
   
   // Form data for the login modal
   $scope.loginData = {};
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -52,6 +53,10 @@ var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
     }, function(err) {
       $scope.erroLogin = true;
       console.error('ERR', err);
+      // Here goes the pupeet user for local development
+      
+
+      
       // err.status will contain the status code
     });
 
