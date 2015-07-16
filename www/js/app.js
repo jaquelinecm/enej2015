@@ -4,9 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('enejApp', ['ionic', 'ngCordova'])
+var myApp = angular.module('enejApp', [
+  'ionic',
+  'ngCordova',
+  'ionic.service.core',
+  'ionic.service.push',
+])
 
-.run(function($ionicPlatform, $cordovaSQLite) {
+myApp.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -28,7 +33,19 @@ angular.module('enejApp', ['ionic', 'ngCordova'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+myApp.config(['$ionicAppProvider', function($ionicAppProvider) {
+  // Identify app
+  $ionicAppProvider.identify({
+    // The App ID (from apps.ionic.io) for the server
+    app_id: '33666b21',
+    // The public API key all services will use for this app
+    api_key: '7ceddd61fea6ba431d8e1cef5a738037b2ffa5c2c733e4db',
+    // Set the app to use development pushes
+    dev_push: true
+  });
+}])
+
+myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
   .state('app', {

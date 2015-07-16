@@ -82,14 +82,9 @@ var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
   $scope.login = function() {
     $scope.modal.show();
   };
- 
-
-
-  
-
- 
-
 })
+
+
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
