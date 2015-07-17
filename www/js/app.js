@@ -39,7 +39,7 @@ myApp.config(['$ionicAppProvider', function($ionicAppProvider) {
     // The App ID (from apps.ionic.io) for the server
     app_id: '33666b21',
     // The public API key all services will use for this app
-    api_key: '7ceddd61fea6ba431d8e1cef5a738037b2ffa5c2c733e4db',
+    api_key: 'c38b69181133f0ab8ca44e3adc97b6c312ae35aedcee80b4',
     // Set the app to use development pushes
     dev_push: true
   });
@@ -95,7 +95,6 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: "templates/sponsorInstitutoSabin.html",
         controller: 'SponsorInstitutoSabinCtrl'
       },
-      
     }
   })
 
@@ -125,15 +124,16 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
+    
+  .state('app.playlists', {
+    url: "/playlists",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/playlists.html",
+        controller: 'PlaylistsCtrl'
       }
-    })
+    }
+  })
 
   .state('app.single', {
     url: "/playlists/:playlistId",
@@ -143,10 +143,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         controller: 'PlaylistCtrl'
       }
     }
-
-
-
   });
+
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/welcome');
 });

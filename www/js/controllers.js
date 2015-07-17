@@ -1,6 +1,6 @@
 angular.module('enejApp')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $rootScope, $cordovaSQLite, Session) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $rootScope, $cordovaSQLite, $ionicUser, $ionicPush, Session) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -33,6 +33,46 @@ angular.module('enejApp')
   // Form data for the login modal
   $scope.loginData = {};
 
+  // identify the user for ionic
+  $scope.identifyUser = function() {
+    console.log('Ionic User: Identifying with Ionic User service');
+
+    var user = $ionicUser.get();
+    if(!user.user_id) {
+      // Set your user_id here, or generate a random one.
+      user.user_id = $ionicUser.generateGUID();
+    };
+
+    // Add some metadata to your user object.
+    angular.extend(user, {
+      name: Session.user,
+    });
+
+    // Identify your user with the Ionic User Service
+    $ionicUser.identify(user).then(function(){
+      $scope.identified = true;
+      //alert('Identified user ' + user.name + '\n ID ' + user.user_id) ;
+    });
+  };
+
+  //register the user device
+  $scope.pushRegister = function() {
+    console.log('Ionic Push: Registering user');
+
+    // Register with the Ionic Push service.  All parameters are optional.
+    $ionicPush.register({
+      canShowAlert: true, //Can pushes show an alert on your screen?
+      canSetBadge: true, //Can pushes update app icon badges?
+      canPlaySound: true, //Can notifications play a sound?
+      canRunActionsOnWake: true, //Can run actions outside the app,
+      onNotification: function(notification) {
+        // Handle new push notifications here
+        // console.log(notification);
+        return true;
+      }
+    });
+  };
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -45,6 +85,8 @@ angular.module('enejApp')
       if(resp.data.success){
         $scope.erroLogin = false;
         Session.create($scope.loginData.username,$scope.loginData.password,true);
+        $scope.identifyUser();
+        $scope.pushRegister();
       } else {
         $scope.erroLogin = true;
       }
@@ -53,13 +95,8 @@ angular.module('enejApp')
     }, function(err) {
       $scope.erroLogin = true;
       console.error('ERR', err);
-      // Here goes the pupeet user for local development
-      
-
-      
       // err.status will contain the status code
     });
-
 
     $rootScope.loggedUser = Session;
 
