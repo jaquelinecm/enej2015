@@ -98,6 +98,16 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.speakers', {
+    url: "/speakers",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/speakers.html",
+        controller: 'SpeakersCtrl'
+      },
+    }
+  })
+
   .state('app.login', {
     url: "/login",
     views: {
