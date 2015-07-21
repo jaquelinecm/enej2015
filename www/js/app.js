@@ -108,6 +108,16 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.ccug', {
+    url: "/ccug",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/ccug.html",
+        controller: 'CcugCtrl'
+      },
+    }
+  })
+
   .state('app.login', {
     url: "/login",
     views: {
