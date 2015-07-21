@@ -37,9 +37,9 @@ myApp.config(['$ionicAppProvider', function($ionicAppProvider) {
   // Identify app
   $ionicAppProvider.identify({
     // The App ID (from apps.ionic.io) for the server
-    app_id: '33666b21',
+    app_id: '2467bb48',
     // The public API key all services will use for this app
-    api_key: 'c38b69181133f0ab8ca44e3adc97b6c312ae35aedcee80b4',
+    api_key: 'e90a7624f3ccbff957dbe94e9347463b24c5abea7e9d6a7e',
     // Set the app to use development pushes
     dev_push: true
   });

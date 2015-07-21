@@ -1,6 +1,6 @@
 angular.module('enejApp')
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $rootScope, $cordovaSQLite, $ionicUser, $ionicPush, Session) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $rootScope, $cordovaSQLite, $ionicUser, $ionicPush, Session, $ionicPopup) {
   
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,23 +9,23 @@ angular.module('enejApp')
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   
-  var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
-        $cordovaSQLite.execute(db, query, ['teste', 'teste']).then(function(res) {
-            console.log("INSERT ID -> " + res.insertId);
-        }, function (err) { 
-            console.error(err);
-        });
+  // var query = "INSERT INTO people (firstname, lastname) VALUES (?,?)";
+  //       $cordovaSQLite.execute(db, query, ['teste', 'teste']).then(function(res) {
+  //           console.log("INSERT ID -> " + res.insertId);
+  //       }, function (err) { 
+  //           console.error(err);
+  //       });
 
-  var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
-        $cordovaSQLite.execute(db, query, ['teste']).then(function(res) {
-            if(res.rows.length > 0) {
-                console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
-            } else {
-                console.log("No results found");
-            }
-        }, function (err) {
-            console.error(err);
-        });
+  // var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
+  //       $cordovaSQLite.execute(db, query, ['teste']).then(function(res) {
+  //           if(res.rows.length > 0) {
+  //               console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
+  //           } else {
+  //               console.log("No results found");
+  //           }
+  //       }, function (err) {
+  //           console.error(err);
+  //       });
 
   $scope.erroLogin = false;
   $scope.messageError = "";
@@ -68,6 +68,7 @@ angular.module('enejApp')
       onNotification: function(notification) {
         // Handle new push notifications here
         // console.log(notification);
+        $scope.showAlert(notification);
         return true;
       }
     });
@@ -107,7 +108,9 @@ angular.module('enejApp')
     }, 1000);
   };
 
-  
+  $scope.push = function() {
+  };
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -123,6 +126,16 @@ angular.module('enejApp')
   // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
+  };
+
+  $scope.showAlert = function(mensage) {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Notification',
+      template: mensage
+    });
+    alertPopup.then(function(res) {
+      console.log('Thank you');
+    });
   };
 })
 

@@ -1,1 +1,3 @@
-curl -u 07c539b9b23094e8d32925fcdba5d3a50c4b5a744373c5f3: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 33666b21" https://push.ionic.io/api/v1/push -d '{"tokens":["DEV-7807a1d8-21e5-4bdc-b1f0-e7fd051be542"],"notification":{"alert":"I come from planet Ion."}}'
+curl -u 07c539b9b23094e8d32925fcdba5d3a50c4b5a744373c5f3: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 33666b21" https://push.ionic.io/api/v1/push -d '{"tokens":["DEV-69cdff2e-c832-4baa-9b3a-a852174a3e45"],"notification":{"alert":"I come from planet Ion."}}'
+
+curl -u 9b5d5c9b7194755aec27242a14d6c3a7f71c8c310addfe4c: -H "Content-Type: application/json" -H "X-Ionic-Application-Id: 2467bb48" https://push.ionic.io/api/v1/push -d '{"tokens":["DEV-b117d0d8-610c-4317-8a49-004c7dc83562"],"notification":{"alert":"I come from planet Ion."}}'
