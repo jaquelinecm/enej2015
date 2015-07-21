@@ -90,3 +90,20 @@
 	font-size: 11pt;
 }
 
+/* ccug */
+
+#ccug-background{
+
+}
+
+#ccug-scroll{
+	width: 500px; 
+	height: 500px;
+}
+
+#ccug{
+	width: 1104px; 
+	height: 1101px; 
+	background: url('../img/ccug.png') no-repeat;
+}
+
